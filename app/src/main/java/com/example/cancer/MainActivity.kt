@@ -14,9 +14,13 @@ import androidx.navigation.ui.setupWithNavController
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import androidx.room.Room
+import androidx.room.Room.databaseBuilder
 import com.example.cancer.R.menu.header_color
+import com.example.cancer.db.AppDatabase
+import com.example.cancer.db.SetDatabase
 import kotlinx.android.synthetic.main.fragment_slideshow.*
-
+import com.example.cancer.Call
 class MainActivity : AppCompatActivity() {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
@@ -41,18 +45,24 @@ class MainActivity : AppCompatActivity() {
                 R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow), drawerLayout)
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
+
     }
 
 
 
     fun setEn(view: View) {
         // Do something in response to button
-        en.text = "Hello Kotlin!"
+        val f = Call()
+        en.text = "eee"
+
+       var t =  f.L(applicationContext)
+        en.text = t.lang
+
     }
 
     fun setFr(view: View) {
         // Do something in response to button
-        fr.text = "Hello Kotlin!"
+
     }
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
