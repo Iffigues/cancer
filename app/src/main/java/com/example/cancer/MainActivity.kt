@@ -56,7 +56,7 @@ class MainActivity : AppCompatActivity() {
         en.text = "eee"
 
        var t =  f.L(applicationContext)
-        en.text = t.lang
+        en.text = t.toString()
 
     }
 
