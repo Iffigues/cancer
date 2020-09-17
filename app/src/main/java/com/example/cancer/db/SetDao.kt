@@ -7,7 +7,9 @@ interface SetDao {
     @Query("SELECT * FROM `set`")
     fun getAll(): List<Set>
 
-    @Query("UPDATE `set` SET lang = :lang")
+
+    @Query("UPDATE `set` SET lang = :lang WHERE uid = 1")
+
     fun changeLang(lang: String): Int
 
     @Query("SELECT * FROM `set` WHERE uid IN (:setIds)")
