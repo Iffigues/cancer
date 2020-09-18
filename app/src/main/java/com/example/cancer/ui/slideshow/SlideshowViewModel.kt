@@ -15,5 +15,4 @@ class SlideshowViewModel :   ViewModel() {
     fun onOptionsItemSelected(item: MenuItem): Boolean {
         return true
     }
-
 }

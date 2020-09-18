@@ -41,7 +41,7 @@ class MainActivity : AppCompatActivity() {
         // menu should be considered as top level destinations.
         appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow
+                R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow, R.menu.header_color
             ), drawerLayout
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
@@ -52,14 +52,29 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+    fun setRed(view: View) {
+        // Do something in response to button
+        val f = Call()
+        en.text = "eee"
+
+        var t = f.L(applicationContext)
+    }
+
+    fun setBlue(view: View) {
+        // Do something in response to button
+        val f = Call()
+        en.text = "eee"
+
+        var t = f.L(applicationContext)
+    }
 
     fun setEn(view: View) {
         // Do something in response to button
         val f = Call()
         en.text = "eee"
 
-       var t =  f.L(applicationContext)
-        en.text = t.toString()
+        var t = f.L(applicationContext)
+
 
     }
 
@@ -71,6 +86,7 @@ class MainActivity : AppCompatActivity() {
         // Inflate the menu; this adds items to the action bar if it is present.
         menuInflater.inflate(R.menu.main, menu)
         menuInflater.inflate(R.menu.header_color, menu)
+
         return true
     }
 
@@ -81,10 +97,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return (when (item.itemId) {
-
-            R.id.nav_slideshow -> {
-
-                //en.text = "eee"
+            R.id.red -> {
                 return true
             }
             else -> {
