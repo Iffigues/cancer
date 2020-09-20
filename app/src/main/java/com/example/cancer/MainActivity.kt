@@ -116,7 +116,7 @@ class MainActivity : AppCompatActivity() {
             R.id.blue -> {
                 var f = Call()
                 f.C(applicationContext, "BLUE")
-                toolbar.setBackgroundColor(Color.RED)
+                toolbar.setBackgroundColor(Color.BLUE)
                 return true
             }
             else -> {
