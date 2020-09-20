@@ -4,11 +4,9 @@
         android:checkableBehavior="single">
         <item
             android:id="@+id/red"
-            android:onClick="setRed"
             android:title="red" />
         <item
             android:id="@+id/blue"
-            android:onClick="setBlue"
             android:title="blue" />
     </group>
 </menu>

@@ -1,6 +1,7 @@
 package com.example.cancer
 
 
+import android.graphics.Color
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -16,6 +17,7 @@ import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.navigation.NavigationView
 import com.google.android.material.snackbar.Snackbar
+import kotlinx.android.synthetic.main.app_bar_main.*
 import kotlinx.android.synthetic.main.fragment_slideshow.*
 
 
@@ -48,7 +50,11 @@ class MainActivity : AppCompatActivity() {
         navView.setupWithNavController(navController)
         val f = Call()
         var t = f.B(applicationContext)
-
+        if (t.color == "RED") {
+            toolbar.setBackgroundColor(Color.RED)
+        } else {
+            toolbar.setBackgroundColor(Color.BLUE)
+        }
 
     }
 
@@ -57,7 +63,7 @@ class MainActivity : AppCompatActivity() {
         val f = Call()
         en.text = "eee"
 
-        var t = f.L(applicationContext)
+        var t = f.L(applicationContext, "fr")
     }
 
     fun setBlue(view: View) {
@@ -65,7 +71,7 @@ class MainActivity : AppCompatActivity() {
         val f = Call()
         en.text = "eee"
 
-        var t = f.L(applicationContext)
+        var t = f.L(applicationContext, "fr")
     }
 
     fun setEn(view: View) {
@@ -73,15 +79,19 @@ class MainActivity : AppCompatActivity() {
         val f = Call()
         en.text = "eee"
 
-        var t = f.L(applicationContext)
+        var t = f.L(applicationContext, "en")
 
 
     }
 
     fun setFr(view: View) {
-        // Do something in response to button
+        val f = Call()
+        en.text = "eee"
+
+        var t = f.L(applicationContext, "er")
 
     }
+
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
         menuInflater.inflate(R.menu.main, menu)
@@ -98,6 +108,15 @@ class MainActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return (when (item.itemId) {
             R.id.red -> {
+                var f = Call()
+                f.C(applicationContext, "RED")
+                toolbar.setBackgroundColor(Color.RED)
+                return true
+            }
+            R.id.blue -> {
+                var f = Call()
+                f.C(applicationContext, "BLUE")
+                toolbar.setBackgroundColor(Color.RED)
                 return true
             }
             else -> {

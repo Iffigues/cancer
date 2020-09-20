@@ -1,7 +1,5 @@
 
 package com.example.cancer
-import android.view.View
-import kotlinx.android.synthetic.main.fragment_slideshow.*
 import android.content.Context
 import androidx.room.Room
 import com.example.cancer.db.Set
@@ -12,13 +10,13 @@ class Call {
     //super.onCreate(savedInstanceState)
     //}
 
-    fun L(app: Context): Int {
+    fun L(app: Context, lg: String): Int {
         val db = Room.databaseBuilder(
             app,
             SetDatabase::class.java, "User.db"
         ).allowMainThreadQueries().fallbackToDestructiveMigration().build()
 
-        var tt = db.setDao().changeLang("fr")
+        var tt = db.setDao().changeLang(lg)
         db.close()
         return tt
     }
@@ -29,9 +27,9 @@ class Call {
             SetDatabase::class.java, "User.db"
         ).allowMainThreadQueries().fallbackToDestructiveMigration().build()
         var tt = db.setDao().getAll()
-        if (tt.isEmpty() ) {
+        if (tt.isEmpty()) {
             db.setDao().insertAll(
-                Set("1","red","al")
+                Set("1", "RED", "en")
             )
         }
         var t = db.setDao().findByName()
@@ -39,4 +37,13 @@ class Call {
         return t
     }
 
+    fun C(app: Context, color: String): Int {
+        val db = Room.databaseBuilder(
+            app,
+            SetDatabase::class.java, "User.db"
+        ).allowMainThreadQueries().fallbackToDestructiveMigration().build()
+        var t = db.setDao().changeColor(color)
+        db.close()
+        return t
+    }
 }

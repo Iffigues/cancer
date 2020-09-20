@@ -9,8 +9,10 @@ interface SetDao {
 
 
     @Query("UPDATE `set` SET lang = :lang WHERE uid = 1")
-
     fun changeLang(lang: String): Int
+
+    @Query("UPDATE `set` SET color_header = :color WHERE uid = 1")
+    fun changeColor(color: String): Int
 
     @Query("SELECT * FROM `set` WHERE uid IN (:setIds)")
     fun loadAllByIds(setIds: IntArray): List<Set>
@@ -20,6 +22,7 @@ interface SetDao {
 
     @Insert
     fun insertAll(vararg sets: Set)
+
     @Update
     suspend fun updateUsers(vararg sets: Set)
 
