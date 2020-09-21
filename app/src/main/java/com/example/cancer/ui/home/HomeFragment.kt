@@ -9,6 +9,7 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import com.example.cancer.Call
 import com.example.cancer.R
 import kotlinx.android.synthetic.main.fragment_home.*
 
@@ -26,9 +27,20 @@ class HomeFragment : Fragment() {
         val root = inflater.inflate(R.layout.fragment_home, container, false)
         val textView: TextView = root.findViewById(R.id.text_home)
         homeViewModel.text.observe(viewLifecycleOwner, Observer {
-            textView.text = it
+            //textView.text = it
             var b = Button(activity)
             ou.addView(b)
+            var t = Call()
+            var a = activity
+            if (a != null) {
+                var f = t.getUse(a)
+                f.forEach {
+                    var b = Button(activity)
+                    b.text = it.tel
+                    ou.addView(b)
+                }
+
+            }
         })
         return root
     }
