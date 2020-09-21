@@ -18,7 +18,6 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.navigation.NavigationView
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.app_bar_main.*
-import kotlinx.android.synthetic.main.fragment_slideshow.*
 
 
 class MainActivity : AppCompatActivity() {
@@ -55,42 +54,22 @@ class MainActivity : AppCompatActivity() {
         } else {
             toolbar.setBackgroundColor(Color.BLUE)
         }
-
-    }
-
-    fun setRed(view: View) {
-        // Do something in response to button
-        val f = Call()
-        en.text = "eee"
-
-        var t = f.L(applicationContext, "fr")
-    }
-
-    fun setBlue(view: View) {
-        // Do something in response to button
-        val f = Call()
-        en.text = "eee"
-
-        var t = f.L(applicationContext, "fr")
     }
 
     fun setEn(view: View) {
-        // Do something in response to button
         val f = Call()
-        en.text = "eee"
-
         var t = f.L(applicationContext, "en")
-
-
     }
 
     fun setFr(view: View) {
         val f = Call()
-        en.text = "eee"
-
         var t = f.L(applicationContext, "er")
+    }
+
+    fun getUser(view: View) {
 
     }
+
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.

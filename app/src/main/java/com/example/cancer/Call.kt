@@ -2,8 +2,10 @@
 package com.example.cancer
 import android.content.Context
 import androidx.room.Room
+import com.example.cancer.db.AppDatabase
 import com.example.cancer.db.Set
 import com.example.cancer.db.SetDatabase
+import com.example.cancer.db.User
 
 class Call {
     //override fun onCreate(savedInstanceState: Bundle?) {
@@ -45,5 +47,33 @@ class Call {
         var t = db.setDao().changeColor(color)
         db.close()
         return t
+    }
+
+    fun addUse(app: Context, phone: String, fn: String, ln: String, ps: String, em: String): Long {
+        val db = Room.databaseBuilder(
+            app,
+            AppDatabase::class.java, "Users.db"
+        ).allowMainThreadQueries().fallbackToDestructiveMigration().build()
+        var tt = db.userDao().findByName(phone)
+        if (tt != null) {
+            return (-1.00).toLong()
+        }
+        var t = db.userDao().insertRAll(fn, ln, phone, ps, em)
+
+        db.close()
+        return t
+
+    }
+
+    fun getUse(app: Context): List<User> {
+        val db = Room.databaseBuilder(
+            app,
+            AppDatabase::class.java, "Users.db"
+        ).allowMainThreadQueries().fallbackToDestructiveMigration().build()
+        var tt = db.userDao().getAll()
+
+        db.close()
+        return tt
+
     }
 }
