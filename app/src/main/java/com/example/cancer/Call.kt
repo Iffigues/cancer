@@ -49,7 +49,29 @@ class Call {
         return t
     }
 
+    fun verif(phone: String, fn: String, ln: String, ps: String, em: String): Boolean {
+        if (phone.isBlank() || phone.isEmpty()) {
+            return false
+        }
+        if (fn.isBlank() || fn.isEmpty()) {
+            return false
+        }
+        if (ln.isBlank() || ln.isEmpty()) {
+            return false
+        }
+        if (ps.isBlank() || ps.isEmpty()) {
+            return false
+        }
+        if (em.isBlank() || em.isEmpty()) {
+            return false
+        }
+        return true
+    }
+
     fun addUse(app: Context, phone: String, fn: String, ln: String, ps: String, em: String): Long {
+        if (!verif(phone, fn, ln, ps, em)) {
+            return (-1.00).toLong()
+        }
         val db = Room.databaseBuilder(
             app,
             AppDatabase::class.java, "Users.db"
@@ -71,6 +93,20 @@ class Call {
             AppDatabase::class.java, "Users.db"
         ).allowMainThreadQueries().fallbackToDestructiveMigration().build()
         var tt = db.userDao().getAll()
+
+        db.close()
+        return tt
+
+    }
+
+    fun getOnUse(app: Context, id: String?): User? {
+        val db = Room.databaseBuilder(
+            app,
+            AppDatabase::class.java, "Users.db"
+        ).allowMainThreadQueries().fallbackToDestructiveMigration().build()
+
+        var ids = id?.toInt()
+        var tt = ids?.let { db.userDao().loadById(it) }
 
         db.close()
         return tt
