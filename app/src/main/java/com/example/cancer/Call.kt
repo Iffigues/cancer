@@ -2,10 +2,8 @@
 package com.example.cancer
 import android.content.Context
 import androidx.room.Room
-import com.example.cancer.db.AppDatabase
+import com.example.cancer.db.*
 import com.example.cancer.db.Set
-import com.example.cancer.db.SetDatabase
-import com.example.cancer.db.User
 
 class Call {
     //override fun onCreate(savedInstanceState: Bundle?) {
@@ -107,6 +105,32 @@ class Call {
 
         var ids = id?.toInt()
         var tt = ids?.let { db.userDao().loadById(it) }
+
+        db.close()
+        return tt
+
+    }
+
+    fun sendMessages(app: Context, message: String, who: String, id: Int): Long {
+        val db = Room.databaseBuilder(
+            app,
+            TalkDatabase::class.java, "Messages.db"
+        ).allowMainThreadQueries().fallbackToDestructiveMigration().build()
+
+        var tt = db.talkDao().insertRAll(message, who, id)
+
+        db.close()
+        return tt
+
+    }
+
+    fun getMessages(app: Context, id: Int): List<Talk> {
+        val db = Room.databaseBuilder(
+            app,
+            TalkDatabase::class.java, "Messages.db"
+        ).allowMainThreadQueries().fallbackToDestructiveMigration().build()
+
+        var tt = db.talkDao().hh(id)
 
         db.close()
         return tt

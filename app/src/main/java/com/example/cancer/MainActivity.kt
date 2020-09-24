@@ -19,6 +19,7 @@ import com.google.android.material.navigation.NavigationView
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.app_bar_main.*
 
+private const val MY_PERMISSIONS_REQUEST_SEND_SMS = 1
 
 class MainActivity : AppCompatActivity() {
 

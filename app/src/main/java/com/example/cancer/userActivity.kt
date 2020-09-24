@@ -25,6 +25,14 @@ class userActivity : AppCompatActivity() {
         startActivity(intent)
     }
 
+    fun sendParle(view: View) {
+        val message: String? = intent.getStringExtra(EXTRA_MESSAGE)
+        val intent = Intent1(this, meta::class.java).apply {
+            putExtra(EXTRA_MESSAGE, message)
+        }
+        startActivity(intent)
+    }
+
     fun bak(view: View) {
         finish()
     }
