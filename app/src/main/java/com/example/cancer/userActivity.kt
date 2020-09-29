@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.mediarouter.media.MediaControlIntent.EXTRA_MESSAGE
+import kotlinx.android.synthetic.main.activity_user.*
 import android.content.Intent as Intent1
 
 class userActivity : AppCompatActivity() {
@@ -15,8 +16,14 @@ class userActivity : AppCompatActivity() {
         val message: String? = intent.getStringExtra(EXTRA_MESSAGE)
         val actionBar = supportActionBar
         var t = Call()
+        var yy = t.B(applicationContext)
+        if (yy.lang == "fr") {
+            edit.text = "editer"
+            parle.text = "parle"
+            back.text = "retour"
+        }
         if (actionBar != null) {
-            var yy = t.B(applicationContext)
+
             if (yy.color == "RED") {
                 actionBar.setBackgroundDrawable(ColorDrawable(Color.RED))
             } else {

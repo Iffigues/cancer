@@ -14,9 +14,7 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
-import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.navigation.NavigationView
-import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.app_bar_main.*
 
 const val MY_PERMISSIONS_REQUEST_SEND_SMS = 1
@@ -31,11 +29,6 @@ class MainActivity : AppCompatActivity() {
         val toolbar: Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
 
-        val fab: FloatingActionButton = findViewById(R.id.fab)
-        fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show()
-        }
         val drawerLayout: DrawerLayout = findViewById(R.id.drawer_layout)
         val navView: NavigationView = findViewById(R.id.nav_view)
         val navController = findNavController(R.id.nav_host_fragment)
@@ -46,25 +39,48 @@ class MainActivity : AppCompatActivity() {
                 R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow, R.menu.header_color
             ), drawerLayout
         )
+
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
         val f = Call()
         var t = f.B(applicationContext)
+        t.lang?.let { changemm(it) }
         if (t.color == "RED") {
             toolbar.setBackgroundColor(Color.RED)
         } else {
             toolbar.setBackgroundColor(Color.BLUE)
+        }
+
+    }
+
+    fun changemm(a: String) {
+        val navView: NavigationView = findViewById(R.id.nav_view)
+        var menuItem = navView.menu.findItem(R.id.nav_home)
+        menuItem.title = "home"
+        var menuItems = navView.menu.findItem(R.id.nav_slideshow)
+        menuItems.title = "lang"
+        var menuItemss = navView.menu.findItem(R.id.nav_gallery)
+        menuItemss.title = "new"
+        if (a == "fr") {
+            var menuItem = navView.menu.findItem(R.id.nav_home)
+            menuItem.title = "maison"
+            var menuItems = navView.menu.findItem(R.id.nav_slideshow)
+            menuItems.title = "langue"
+            var menuItemss = navView.menu.findItem(R.id.nav_gallery)
+            menuItemss.title = "nouveau"
         }
     }
 
     fun setEn(view: View) {
         val f = Call()
         var t = f.L(applicationContext, "en")
+        changemm("en")
     }
 
     fun setFr(view: View) {
         val f = Call()
-        var t = f.L(applicationContext, "er")
+        var t = f.L(applicationContext, "fr")
+        changemm("fr")
     }
 
     fun getUser(view: View) {
