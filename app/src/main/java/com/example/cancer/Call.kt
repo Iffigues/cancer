@@ -97,6 +97,18 @@ class Call {
 
     }
 
+    fun getTel(app: Context, st: String): User {
+        val db = Room.databaseBuilder(
+            app,
+            AppDatabase::class.java, "Users.db"
+        ).allowMainThreadQueries().fallbackToDestructiveMigration().build()
+        var tt = db.userDao().findByName(st)
+
+        db.close()
+        return tt
+
+    }
+
     fun getOnUse(app: Context, id: String?): User? {
         val db = Room.databaseBuilder(
             app,
