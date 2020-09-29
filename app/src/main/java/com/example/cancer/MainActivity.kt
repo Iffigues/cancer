@@ -1,11 +1,13 @@
 package com.example.cancer
 
 
+import android.annotation.SuppressLint
 import android.graphics.Color
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.drawerlayout.widget.DrawerLayout
@@ -16,11 +18,14 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.navigation.NavigationView
 import kotlinx.android.synthetic.main.app_bar_main.*
+import java.text.SimpleDateFormat
+import java.util.*
+
 
 const val MY_PERMISSIONS_REQUEST_SEND_SMS = 1
 
-class MainActivity : AppCompatActivity() {
 
+class MainActivity : AppCompatActivity() {
     private lateinit var appBarConfiguration: AppBarConfiguration
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -120,5 +125,22 @@ class MainActivity : AppCompatActivity() {
                 super.onOptionsItemSelected(item)
             }
         })
+    }
+
+    internal var o = ""
+    override fun onResume() {
+        super.onResume()
+        if (o.isNotBlank() && o.isNotEmpty()) {
+            Toast.makeText(applicationContext, o, Toast.LENGTH_LONG).show()
+        }
+    }
+
+    @SuppressLint("SimpleDateFormat")
+    override fun onPause() {
+        super.onPause()
+        SimpleDateFormat("yyyy.MM.dd '-' HH:mm:ss")
+        o = Date().toString()
+        // pauseDate = Utils.dateToString()
+        //unregisterReceiver(intentReceiver)
     }
 }
