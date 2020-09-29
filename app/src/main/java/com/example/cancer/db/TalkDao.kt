@@ -9,7 +9,7 @@ interface TalkDao {
     @Query("SELECT * FROM `talk`")
     fun getAll(): List<Talk>
 
-    @Query("SELECT * FROM `talk` WHERE uid LIKE :If  ORDER BY created DESC LIMIT 1")
+    @Query("SELECT * FROM `talk` WHERE id LIKE :If  ORDER BY created DESC")
     fun hh(If: Int): List<Talk>
 
     @Query("INSERT INTO talk (message, who, id, created) VALUES (:fn, :ln, :Id,  date('now')) ")

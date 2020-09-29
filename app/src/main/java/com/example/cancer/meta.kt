@@ -2,26 +2,52 @@ package com.example.cancer
 
 import android.Manifest
 import android.content.pm.PackageManager
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.telephony.SmsManager
 import android.view.View
-import android.widget.Toast
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.mediarouter.media.MediaControlIntent
 import kotlinx.android.synthetic.main.activity_meta.*
+
 
 class meta : AppCompatActivity() {
     private val MY_PERMISSIONS_REQUEST_SEND_SMS = 1
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_meta)
-        checkForSmsPermission()
+        val actionBar = supportActionBar
         var t = Call()
+        if (actionBar != null) {
+            var yy = t.B(applicationContext)
+            if (yy.color == "RED") {
+                actionBar.setBackgroundDrawable(ColorDrawable(Color.RED))
+            } else {
+                actionBar.setBackgroundDrawable(ColorDrawable(Color.BLUE))
+            }
+        }
+
+        checkForSmsPermission()
         val message: String? = intent.getStringExtra(MediaControlIntent.EXTRA_MESSAGE)
         var f = t.getOnUse(applicationContext, message)
         if (f != null) {
             var ids = f.uid
+            var lll = t.getMessages(applicationContext, ids)
+            lll.forEach {
+                var lp = TextView(applicationContext)
+                lp.text = it.message
+                lp.setTextColor(Color.BLACK)
+                if (it.who == "OTHER") {
+                    lp.gravity = 5
+                    lp.setBackgroundColor(Color.GREEN)
+                } else {
+                    lp.setBackgroundColor(Color.CYAN)
+                }
+                moi.addView(lp)
+            }
             var y = t.getMessages(applicationContext, ids)
             sender.setOnClickListener(object : View.OnClickListener {
                 override fun onClick(v: View?) {
@@ -37,7 +63,8 @@ class meta : AppCompatActivity() {
         ) {
             ActivityCompat.requestPermissions(this,
                 arrayOf<String>(Manifest.permission.SEND_SMS),
-                MY_PERMISSIONS_REQUEST_SEND_SMS)
+                MY_PERMISSIONS_REQUEST_SEND_SMS
+            )
         } else {
         }
 
@@ -46,16 +73,14 @@ class meta : AppCompatActivity() {
         var t = Call()
         val message: String? = intent.getStringExtra(MediaControlIntent.EXTRA_MESSAGE)
         var f = t.getOnUse(applicationContext, message)
-        if (f != null) {
+        if (f != null && mess.text.toString().isNotEmpty() && mess.text.toString().isNotBlank()) {
             var ids = f.uid
             var tt = mess.text.toString()
             t.sendMessages(applicationContext, tt, "me", ids)
             var destinationAddress = f.tel
             var smsMessage = mess.text.toString()
-            Toast.makeText(applicationContext, smsMessage, Toast.LENGTH_LONG).show()
             val smsManager: SmsManager = SmsManager.getDefault()
-            var ttttt = smsManager.sendTextMessage(f.tel, null, smsMessage, null, null)
-            Toast.makeText(applicationContext, ttttt.toString(), Toast.LENGTH_LONG).show()
+            smsManager.sendTextMessage(f.tel, null, smsMessage, null, null)
         }
     }
 }

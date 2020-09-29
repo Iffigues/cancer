@@ -39,13 +39,15 @@ class MyReceiver : BroadcastReceiver() {
         }
     }
 
-    private fun onMessage(smsMessage: SmsMessage?, Context: Any?) {
+    private fun onMessage(smsMessage: SmsMessage?, Context: Context?) {
         var t = Call()
         if (smsMessage != null) {
             var ee = smsMessage.originatingAddress?.let { t.getTel(Context as Context, it) }
-            Toast.makeText(Context as Context, "strMessage", Toast.LENGTH_LONG).show()
+            //Toast.makeText(Context as Context, "strMessage", Toast.LENGTH_LONG).show()
             if (ee != null) {
-                t.sendMessages(Context, smsMessage.messageBody, "OTHER", 12)
+                if (Context != null) {
+                    t.sendMessages(Context, smsMessage.messageBody, "OTHER", 12)
+                }
             }
         }
     }
