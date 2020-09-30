@@ -1,6 +1,7 @@
 package com.example.cancer
 
 import android.Manifest
+import android.annotation.SuppressLint
 import android.content.pm.PackageManager
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
@@ -8,10 +9,13 @@ import android.os.Bundle
 import android.telephony.SmsManager
 import android.view.View
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.mediarouter.media.MediaControlIntent
 import kotlinx.android.synthetic.main.activity_meta.*
+import java.text.SimpleDateFormat
+import java.util.*
 
 
 class meta : AppCompatActivity() {
@@ -82,5 +86,21 @@ class meta : AppCompatActivity() {
             val smsManager: SmsManager = SmsManager.getDefault()
             smsManager.sendTextMessage(f.tel, null, smsMessage, null, null)
         }
+    }
+
+    internal var o = ""
+    override fun onResume() {
+        super.onResume()
+        if (o.isNotBlank() && o.isNotEmpty()) {
+            Toast.makeText(applicationContext, o, Toast.LENGTH_LONG).show()
+        }
+    }
+
+    @SuppressLint("SimpleDateFormat")
+    override fun onPause() {
+        super.onPause()
+        SimpleDateFormat("yyyy.MM.dd '-' HH:mm:ss")
+        o = Date().toString()
+
     }
 }

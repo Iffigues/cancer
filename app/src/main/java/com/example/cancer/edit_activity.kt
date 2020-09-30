@@ -1,12 +1,16 @@
 package com.example.cancer
 
+import android.annotation.SuppressLint
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.mediarouter.media.MediaControlIntent
 import kotlinx.android.synthetic.main.activity_edit_activity.*
+import java.text.SimpleDateFormat
+import java.util.*
 
 class edit_activity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -99,5 +103,21 @@ class edit_activity : AppCompatActivity() {
 
     fun sendMessage(view: View) {
         finish()
+    }
+
+    internal var o = ""
+    override fun onResume() {
+        super.onResume()
+        if (o.isNotBlank() && o.isNotEmpty()) {
+            Toast.makeText(applicationContext, o, Toast.LENGTH_LONG).show()
+        }
+    }
+
+    @SuppressLint("SimpleDateFormat")
+    override fun onPause() {
+        super.onPause()
+        SimpleDateFormat("yyyy.MM.dd '-' HH:mm:ss")
+        o = Date().toString()
+
     }
 }
