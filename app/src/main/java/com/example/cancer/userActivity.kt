@@ -10,10 +10,11 @@ import kotlinx.android.synthetic.main.activity_user.*
 import android.content.Intent as Intent1
 
 class userActivity : AppCompatActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
+        val message: String? = intent.getStringExtra(EXTRA_MESSAGE)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_user)
-        val message: String? = intent.getStringExtra(EXTRA_MESSAGE)
         val actionBar = supportActionBar
         var t = Call()
         var yy = t.B(applicationContext)

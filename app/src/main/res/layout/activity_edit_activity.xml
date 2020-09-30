@@ -32,7 +32,7 @@
                 android:id="@+id/button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Button" />
+                android:text="OK" />
 
             <TextView
                 android:id="@+id/ff"
@@ -52,13 +52,13 @@
                 android:id="@+id/button2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Button" />
+                android:text="OK" />
 
             <TextView
                 android:id="@+id/ll"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="TextView" />
+                android:text="lastname" />
 
             <EditText
                 android:id="@+id/ln"
@@ -72,7 +72,7 @@
                 android:id="@+id/button3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Button" />
+                android:text="OK" />
 
             <TextView
                 android:id="@+id/pp"
@@ -92,7 +92,7 @@
                 android:id="@+id/button4"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Button" />
+                android:text="OK" />
 
             <TextView
                 android:id="@+id/ee"
@@ -112,7 +112,7 @@
                 android:id="@+id/button7"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Button" />
+                android:text="OK" />
 
             <Button
                 android:id="@+id/back"

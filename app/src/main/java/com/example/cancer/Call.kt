@@ -47,6 +47,24 @@ class Call {
         return t
     }
 
+    fun editU(app: Context, color: String, b: String, id: Int): Int {
+        val db = Room.databaseBuilder(
+            app,
+            AppDatabase::class.java, "Users.db"
+        ).allowMainThreadQueries().fallbackToDestructiveMigration().build()
+        var t = db.userDao()
+        var uu = when (color) {
+            "phone" -> t.changeTel(b, id)
+            "fn" -> t.changeFn(b, id)
+            "ln" -> t.changeFn(b, id)
+            "ps" -> t.changePs(b, id)
+            "em" -> t.changeEm(b, id)
+            else -> 0
+        }
+        db.close()
+        return uu
+    }
+
     fun verif(phone: String, fn: String, ln: String, ps: String, em: String): Boolean {
         if (phone.isBlank() || phone.isEmpty()) {
             return false

@@ -140,7 +140,6 @@ class MainActivity : AppCompatActivity() {
         super.onPause()
         SimpleDateFormat("yyyy.MM.dd '-' HH:mm:ss")
         o = Date().toString()
-        // pauseDate = Utils.dateToString()
-        //unregisterReceiver(intentReceiver)
+ 
     }
 }
