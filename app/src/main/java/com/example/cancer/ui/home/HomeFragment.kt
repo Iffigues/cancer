@@ -30,6 +30,7 @@ class HomeFragment : Fragment() {
         val root = inflater.inflate(R.layout.fragment_home, container, false)
         val textView: TextView = root.findViewById(R.id.text_home)
         homeViewModel.text.observe(viewLifecycleOwner, Observer {
+            c.visibility = View.GONE
             //textView.text = it
             var t = Call()
             var a = activity
@@ -41,6 +42,7 @@ class HomeFragment : Fragment() {
                     b.setOnClickListener(object : View.OnClickListener {
                         override fun onClick(v: View?) {
                             val intent = Intent(activity, userActivity::class.java).apply {
+                                c.text = "o"
                                 putExtra(EXTRA_MESSAGE, it.uid.toString())
                             }
                             startActivity(intent)

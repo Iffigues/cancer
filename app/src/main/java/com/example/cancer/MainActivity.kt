@@ -18,6 +18,7 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.navigation.NavigationView
 import kotlinx.android.synthetic.main.app_bar_main.*
+import kotlinx.android.synthetic.main.fragment_home.*
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -130,8 +131,10 @@ class MainActivity : AppCompatActivity() {
     internal var o = ""
     override fun onResume() {
         super.onResume()
-        if (o.isNotBlank() && o.isNotEmpty()) {
+        if (o.isNotBlank() && o.isNotEmpty() && c.text == "n") {
             Toast.makeText(applicationContext, o, Toast.LENGTH_LONG).show()
+        } else {
+            c.text = "n"
         }
     }
 
@@ -140,6 +143,6 @@ class MainActivity : AppCompatActivity() {
         super.onPause()
         SimpleDateFormat("yyyy.MM.dd '-' HH:mm:ss")
         o = Date().toString()
- 
+
     }
 }
