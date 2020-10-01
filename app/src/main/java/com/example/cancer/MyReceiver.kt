@@ -46,7 +46,7 @@ class MyReceiver : BroadcastReceiver() {
             //Toast.makeText(Context as Context, "strMessage", Toast.LENGTH_LONG).show()
             if (ee != null) {
                 if (Context != null) {
-                    t.sendMessages(Context, smsMessage.messageBody, "OTHER", 12)
+                    t.sendMessages(Context, smsMessage.messageBody, "OTHER", ee.uid)
                 }
             }
         }

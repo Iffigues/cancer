@@ -18,19 +18,22 @@
                 android:id="@+id/edit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:onClick="sendMessage"
                 android:text="edit" />
 
             <Button
                 android:id="@+id/parle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:onClick="sendParle"
                 android:text="talk" />
 
             <Button
-                android:id="@+id/button5"
+                android:id="@+id/back"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="call" />
+                android:onClick="bak"
+                android:text="back" />
         </LinearLayout>
     </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>
