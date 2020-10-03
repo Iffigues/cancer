@@ -1,7 +1,9 @@
 package com.example.cancer
 
 
+import android.Manifest
 import android.annotation.SuppressLint
+import android.content.pm.PackageManager
 import android.graphics.Color
 import android.os.Bundle
 import android.view.Menu
@@ -10,6 +12,7 @@ import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import androidx.core.app.ActivityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
@@ -29,12 +32,24 @@ const val MY_PERMISSIONS_REQUEST_SEND_SMS = 1
 class MainActivity : AppCompatActivity() {
     private lateinit var appBarConfiguration: AppBarConfiguration
 
+    private fun requestContactPermission() {
+        val hasContactPermission: Int =
+            ActivityCompat.checkSelfPermission(applicationContext, Manifest.permission.RECEIVE_SMS)
+        if (hasContactPermission != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this,
+                arrayOf<String>(Manifest.permission.RECEIVE_SMS),
+                MY_PERMISSIONS_REQUEST_SEND_SMS)
+        } else {
+            //Toast.makeText(AddContactsActivity.this, "Contact Permission is already granted", Toast.LENGTH_LONG).show();
+        }
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         val toolbar: Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
-
+        requestContactPermission()
         val drawerLayout: DrawerLayout = findViewById(R.id.drawer_layout)
         val navView: NavigationView = findViewById(R.id.nav_view)
         val navController = findNavController(R.id.nav_host_fragment)
@@ -143,6 +158,6 @@ class MainActivity : AppCompatActivity() {
         super.onPause()
         SimpleDateFormat("yyyy.MM.dd '-' HH:mm:ss")
         o = Date().toString()
-
     }
+
 }

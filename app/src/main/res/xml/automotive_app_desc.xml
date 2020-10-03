@@ -2,5 +2,5 @@
 <automotiveApp>
     <uses name="notification" />
 
-    <uses name="sms" />
+    <uses name="media" />
 </automotiveApp>

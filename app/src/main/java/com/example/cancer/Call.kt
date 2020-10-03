@@ -47,6 +47,14 @@ class Call {
         return t
     }
 
+    fun mok(t: UserDao, b: String, id: Int): Int {
+        var tt = t.findByName(b)
+        if (b.isEmpty()) {
+            return t.changeTel(b, id)
+        }
+        return 1
+    }
+
     fun editU(app: Context, color: String, b: String, id: Int): Int {
         val db = Room.databaseBuilder(
             app,
@@ -54,7 +62,8 @@ class Call {
         ).allowMainThreadQueries().fallbackToDestructiveMigration().build()
         var t = db.userDao()
         var uu = when (color) {
-            "phone" -> t.changeTel(b, id)
+            //"phone" -> t.changeTel(b, id)
+            "phone" -> mok(t, b, id)
             "fn" -> t.changeFn(b, id)
             "ln" -> t.changeFn(b, id)
             "ps" -> t.changePs(b, id)
