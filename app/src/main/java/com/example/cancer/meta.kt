@@ -2,6 +2,10 @@ package com.example.cancer
 
 import android.Manifest
 import android.annotation.SuppressLint
+import android.content.BroadcastReceiver
+import android.content.Context
+import android.content.Intent
+import android.content.IntentFilter
 import android.content.pm.PackageManager
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
@@ -20,8 +24,21 @@ import java.util.*
 
 class meta : AppCompatActivity() {
     private val MY_PERMISSIONS_REQUEST_SEND_SMS = 1
+
+    var intentFilter: IntentFilter? = null
+
+    private val intentReceiver: BroadcastReceiver = object : BroadcastReceiver() {
+        override fun onReceive(context: Context, intent: Intent) {
+            Toast.makeText(context, "strMessage", Toast.LENGTH_LONG).show()
+            onResume()
+        }
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        Toast.makeText(applicationContext,
+            intentReceiver.isInitialStickyBroadcast.toString(),
+            Toast.LENGTH_LONG).show()
         setContentView(R.layout.activity_meta)
         val actionBar = supportActionBar
         var t = Call()
@@ -32,6 +49,13 @@ class meta : AppCompatActivity() {
             } else {
                 actionBar.setBackgroundDrawable(ColorDrawable(Color.BLUE))
             }
+
+            intentFilter = IntentFilter()
+            intentFilter!!.addAction("SMS_RECEIVED_ACTION")
+            registerReceiver(intentReceiver, intentFilter)
+            //register the broadcast receiver
+            //register the broadcast receiver
+
         }
 
         checkForSmsPermission()

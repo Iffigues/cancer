@@ -21,6 +21,7 @@ class MyReceiver : BroadcastReceiver() {
         var strMessage = ""
         val format = bundle!!.getString("format")
         val pdus = bundle[pdu_type] as Array<Any>?
+
         if (pdus != null) {
             val isVersionM = Build.VERSION.SDK_INT >= Build.VERSION_CODES.M
             msgs = arrayOfNulls<SmsMessage>(pdus.size)
@@ -37,10 +38,19 @@ class MyReceiver : BroadcastReceiver() {
                 onMessage(msgs[i], context)
             }
         }
+
     }
+
 
     private fun onMessage(smsMessage: SmsMessage?, Context: Context?) {
         var t = Call()
+        val i = Intent("SMS_RECEIVED_ACTION")
+        //val intent:Intent = Intent()
+        //i.action = "CUSTOM_INTENT"
+        if (Context != null) {
+            Context.sendBroadcast(i)
+            Toast.makeText(Context, "3", Toast.LENGTH_LONG).show()
+        }
         if (smsMessage != null) {
             var ee = smsMessage.originatingAddress?.let { t.getTel(Context as Context, it) }
             //Toast.makeText(Context as Context, "strMessage", Toast.LENGTH_LONG).show()

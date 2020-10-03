@@ -60,6 +60,7 @@ class userActivity : AppCompatActivity() {
 
     fun bak(view: View) {
         finish()
+
     }
 
 

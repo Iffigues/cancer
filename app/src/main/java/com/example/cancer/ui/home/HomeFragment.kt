@@ -16,6 +16,7 @@ import com.example.cancer.R
 import com.example.cancer.userActivity
 import kotlinx.android.synthetic.main.fragment_home.*
 
+
 class HomeFragment : Fragment() {
 
     private lateinit var homeViewModel: HomeViewModel
@@ -46,7 +47,9 @@ class HomeFragment : Fragment() {
                                 putExtra(EXTRA_MESSAGE, it.uid.toString())
                             }
                             startActivity(intent)
+
                         }
+
                     })
                     ou.addView(b)
                 }
