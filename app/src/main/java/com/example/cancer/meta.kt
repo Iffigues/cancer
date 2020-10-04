@@ -29,11 +29,23 @@ class meta : AppCompatActivity() {
 
     private val intentReceiver: BroadcastReceiver = object : BroadcastReceiver() {
         override fun onReceive(context: Context, intent: Intent) {
-            Toast.makeText(context, "strMessage", Toast.LENGTH_LONG).show()
+
+            var t = R.id.moi
+            var lp = TextView(applicationContext)
+
+            val hh = intent.extras?.getString("message")
+            val hhh = intent.extras?.getInt("uid")
+            Toast.makeText(context, hhh.toString(), Toast.LENGTH_LONG).show()
+            if (hh != null && hhh != null && uuid != 0 && hhh == uuid) {
+                lp.text = hh
+                lp.gravity = 5
+                lp.setBackgroundColor(Color.GREEN)
+                moi.addView(lp)
+            }
             onResume()
         }
     }
-
+    internal var uuid = 0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         Toast.makeText(applicationContext,
@@ -57,11 +69,13 @@ class meta : AppCompatActivity() {
             //register the broadcast receiver
 
         }
-
         checkForSmsPermission()
         val message: String? = intent.getStringExtra(MediaControlIntent.EXTRA_MESSAGE)
         var f = t.getOnUse(applicationContext, message)
         if (f != null) {
+            if (message != null) {
+                uuid = message.toInt()
+            }
             var ids = f.uid
             var lll = t.getMessages(applicationContext, ids)
             lll.forEach {
@@ -104,11 +118,17 @@ class meta : AppCompatActivity() {
         if (f != null && mess.text.toString().isNotEmpty() && mess.text.toString().isNotBlank()) {
             var ids = f.uid
             var tt = mess.text.toString()
-            t.sendMessages(applicationContext, tt, "me", ids)
-            var destinationAddress = f.tel
-            var smsMessage = mess.text.toString()
-            val smsManager: SmsManager = SmsManager.getDefault()
-            smsManager.sendTextMessage(f.tel, null, smsMessage, null, null)
+            if (tt.isNotEmpty() && tt.isNotBlank()) {
+                var lp = TextView(applicationContext)
+                lp.text = tt
+                lp.setBackgroundColor(Color.CYAN)
+                moi.addView(lp)
+                t.sendMessages(applicationContext, tt, "me", ids)
+                var destinationAddress = f.tel
+                var smsMessage = mess.text.toString()
+                val smsManager: SmsManager = SmsManager.getDefault()
+                smsManager.sendTextMessage(f.tel, null, smsMessage, null, null)
+            }
         }
     }
 

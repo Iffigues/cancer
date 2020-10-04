@@ -48,8 +48,16 @@ class MyReceiver : BroadcastReceiver() {
         //val intent:Intent = Intent()
         //i.action = "CUSTOM_INTENT"
         if (Context != null) {
-            Context.sendBroadcast(i)
-            Toast.makeText(Context, "3", Toast.LENGTH_LONG).show()
+            if (smsMessage != null) {
+                i.putExtra("message", smsMessage.messageBody)
+                var ee = smsMessage.originatingAddress?.let { t.getTel(Context, it) }
+                if (ee != null) {
+                    Toast.makeText(Context, "message.toString()", Toast.LENGTH_LONG).show()
+                    i.putExtra("uid", ee.uid)
+                }
+                Context.sendBroadcast(i)
+            }
+
         }
         if (smsMessage != null) {
             var ee = smsMessage.originatingAddress?.let { t.getTel(Context as Context, it) }
