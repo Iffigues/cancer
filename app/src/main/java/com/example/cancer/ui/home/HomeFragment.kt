@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -26,13 +27,23 @@ class HomeFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View? {
+        // toolbar.title = "eee"
         homeViewModel =
-                ViewModelProviders.of(this).get(HomeViewModel::class.java)
+            ViewModelProviders.of(this).get(HomeViewModel::class.java)
         val root = inflater.inflate(R.layout.fragment_home, container, false)
         val textView: TextView = root.findViewById(R.id.text_home)
+
+        var t = Call()
+        var yy = activity?.let { t.B(it) }
+        if (yy != null) {
+            if (yy.lang == "fr") {
+                (activity as AppCompatActivity?)!!.supportActionBar?.title = "maison"
+            } else {
+                (activity as AppCompatActivity?)!!.supportActionBar?.title = "home"
+            }
+        }
         homeViewModel.text.observe(viewLifecycleOwner, Observer {
             c.visibility = View.GONE
-            //textView.text = it
             var t = Call()
             var a = activity
             if (a != null) {
