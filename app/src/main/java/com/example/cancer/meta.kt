@@ -16,6 +16,8 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
+import androidx.core.view.isInvisible
 import androidx.mediarouter.media.MediaControlIntent
 import kotlinx.android.synthetic.main.activity_meta.*
 import java.text.SimpleDateFormat
@@ -48,9 +50,7 @@ class meta : AppCompatActivity() {
     internal var uuid = 0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        Toast.makeText(applicationContext,
-            intentReceiver.isInitialStickyBroadcast.toString(),
-            Toast.LENGTH_LONG).show()
+
         setContentView(R.layout.activity_meta)
         val actionBar = supportActionBar
         var t = Call()
@@ -72,6 +72,10 @@ class meta : AppCompatActivity() {
 
         }
         checkForSmsPermission()
+        var o = ContextCompat.checkSelfPermission(this, Manifest.permission.SEND_SMS)
+        Toast.makeText(applicationContext, o.toString(), Toast.LENGTH_LONG).show()
+        if (o == -1)
+            sender.isInvisible = true
         val message: String? = intent.getStringExtra(MediaControlIntent.EXTRA_MESSAGE)
         var f = t.getOnUse(applicationContext, message)
         if (f != null) {
@@ -110,6 +114,7 @@ class meta : AppCompatActivity() {
                 MY_PERMISSIONS_REQUEST_SEND_SMS
             )
         } else {
+            sender.isInvisible = false
         }
 
     fun smsSendMessage() {
