@@ -79,6 +79,7 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
+
     }
 
     fun changemm(aa: String) {
@@ -87,6 +88,7 @@ class MainActivity : AppCompatActivity() {
             var eee = Resources.getSystem().configuration.locale.language
             if (eee == "fr") a = "fr"
         }
+  
         val navView: NavigationView = findViewById(R.id.nav_view)
         var menuItem = navView.menu.findItem(R.id.nav_home)
         menuItem.title = "home"
@@ -95,6 +97,8 @@ class MainActivity : AppCompatActivity() {
         var menuItemss = navView.menu.findItem(R.id.nav_gallery)
         menuItemss.title = "new"
         if (a == "fr") {
+
+
             var menuItem = navView.menu.findItem(R.id.nav_home)
             menuItem.title = "maison"
             var menuItems = navView.menu.findItem(R.id.nav_slideshow)

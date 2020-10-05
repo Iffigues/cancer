@@ -11,6 +11,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.example.cancer.Call
 import com.example.cancer.R
+import kotlinx.android.synthetic.main.fragment_slideshow.*
 
 
 @Suppress("UNREACHABLE_CODE")
@@ -24,12 +25,16 @@ class SlideshowFragment : Fragment() {
         savedInstanceState: Bundle?,
     ): View? {
         var t = Call()
+
+
         var yy = activity?.let { t.B(it) }
         if (yy != null) {
             if (yy.lang == "fr") {
                 (activity as AppCompatActivity?)!!.supportActionBar?.title = "langue"
             } else {
                 (activity as AppCompatActivity?)!!.supportActionBar?.title = "lang"
+
+
             }
         }
         slideshowViewModel =
@@ -37,6 +42,17 @@ class SlideshowFragment : Fragment() {
         val root = inflater.inflate(R.layout.fragment_slideshow, container, false)
         slideshowViewModel.text.observe(viewLifecycleOwner, Observer {
             var t = Call()
+            if (yy != null) {
+                if (yy.lang == "fr") {
+                    fr?.text = "francais"
+                    en?.text = "anglais"
+                    defa?.text = "defaut"
+                } else {
+                    fr?.text = "french"
+                    en?.text = "english"
+                    defa?.text = "default"
+                }
+            }
             var a = activity
             if (a != null) {
                 var tt = t.B(a)

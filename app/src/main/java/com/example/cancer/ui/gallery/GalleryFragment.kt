@@ -28,8 +28,10 @@ class GalleryFragment : Fragment() {
         if (yy != null) {
             if (yy.lang == "fr") {
                 (activity as AppCompatActivity?)!!.supportActionBar?.title = "nouveau"
+
             } else {
                 (activity as AppCompatActivity?)!!.supportActionBar?.title = "new"
+
             }
         }
 
@@ -44,6 +46,17 @@ class GalleryFragment : Fragment() {
                 var er = tt.getUse(aa)
                 var vvvv = er.size
                 gut.text = vvvv.toString()
+            }
+            if (yy != null) {
+                if (yy.lang == "fr") {
+                    textView2?.text = "tel"
+                    textView3?.text = "prenom"
+                    textView4?.text = "nom"
+                } else {
+                    textView2?.text = "phone"
+                    textView3?.text = "firstname"
+                    textView4?.text = "lastname"
+                }
             }
             gut.setOnClickListener(object : View.OnClickListener {
                 override fun onClick(view: View): Unit {
