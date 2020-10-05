@@ -22,17 +22,21 @@ class userActivity : AppCompatActivity() {
         val actionBar = supportActionBar
         var t = Call()
         var yy = t.B(applicationContext)
-        if (yy.lang == "fr") {
-            edit.text = "editer"
-            parle.text = "parle"
-            back.text = "retour"
+        if (yy != null) {
+            if (yy.lang == "fr") {
+                edit.text = "editer"
+                parle.text = "parle"
+                back.text = "retour"
+            }
         }
         if (actionBar != null) {
 
-            if (yy.color == "RED") {
-                actionBar.setBackgroundDrawable(ColorDrawable(Color.RED))
-            } else {
-                actionBar.setBackgroundDrawable(ColorDrawable(Color.BLUE))
+            if (yy != null) {
+                if (yy.color == "RED") {
+                    actionBar.setBackgroundDrawable(ColorDrawable(Color.RED))
+                } else {
+                    actionBar.setBackgroundDrawable(ColorDrawable(Color.BLUE))
+                }
             }
         }
         var f = t.getOnUse(applicationContext, message)

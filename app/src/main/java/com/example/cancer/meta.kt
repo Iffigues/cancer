@@ -56,10 +56,12 @@ class meta : AppCompatActivity() {
         var t = Call()
         if (actionBar != null) {
             var yy = t.B(applicationContext)
-            if (yy.color == "RED") {
-                actionBar.setBackgroundDrawable(ColorDrawable(Color.RED))
-            } else {
-                actionBar.setBackgroundDrawable(ColorDrawable(Color.BLUE))
+            if (yy != null) {
+                if (yy.color == "RED") {
+                    actionBar.setBackgroundDrawable(ColorDrawable(Color.RED))
+                } else {
+                    actionBar.setBackgroundDrawable(ColorDrawable(Color.BLUE))
+                }
             }
 
             intentFilter = IntentFilter()

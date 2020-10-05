@@ -4,6 +4,7 @@ package com.example.cancer
 import android.Manifest
 import android.annotation.SuppressLint
 import android.content.pm.PackageManager
+import android.content.res.Resources
 import android.graphics.Color
 import android.os.Bundle
 import android.view.Menu
@@ -55,6 +56,7 @@ class MainActivity : AppCompatActivity() {
         val navController = findNavController(R.id.nav_host_fragment)
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
+
         appBarConfiguration = AppBarConfiguration(
             setOf(
                 R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow, R.menu.header_color
@@ -65,16 +67,26 @@ class MainActivity : AppCompatActivity() {
         navView.setupWithNavController(navController)
         val f = Call()
         var t = f.B(applicationContext)
-        t.lang?.let { changemm(it) }
-        if (t.color == "RED") {
-            toolbar.setBackgroundColor(Color.RED)
-        } else {
-            toolbar.setBackgroundColor(Color.BLUE)
+
+        if (t != null) {
+            t.lang.let { changemm(it) }
+        }
+        if (t != null) {
+            if (t.color == "RED") {
+                toolbar.setBackgroundColor(Color.RED)
+            } else {
+                toolbar.setBackgroundColor(Color.BLUE)
+            }
         }
 
     }
 
-    fun changemm(a: String) {
+    fun changemm(aa: String) {
+        var a = aa
+        if (aa == "def") {
+            var eee = Resources.getSystem().configuration.locale.language
+            if (eee == "fr") a = "fr"
+        }
         val navView: NavigationView = findViewById(R.id.nav_view)
         var menuItem = navView.menu.findItem(R.id.nav_home)
         menuItem.title = "home"
@@ -102,6 +114,12 @@ class MainActivity : AppCompatActivity() {
         val f = Call()
         var t = f.L(applicationContext, "fr")
         changemm("fr")
+    }
+
+    fun setDef(view: View) {
+        val f = Call()
+        var t = f.L(applicationContext, "def")
+        changemm("def")
     }
 
     fun getUser(view: View) {

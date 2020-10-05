@@ -1,6 +1,7 @@
 
 package com.example.cancer
 import android.content.Context
+import android.content.res.Resources
 import androidx.room.Room
 import com.example.cancer.db.*
 import com.example.cancer.db.Set
@@ -21,20 +22,41 @@ class Call {
         return tt
     }
 
-    fun B(app: Context): Set {
+    fun B(app: Context): settes? {
+
         val db = Room.databaseBuilder(
             app,
             SetDatabase::class.java, "User.db"
         ).allowMainThreadQueries().fallbackToDestructiveMigration().build()
         var tt = db.setDao().getAll()
         if (tt.isEmpty()) {
+            val bb = Resources.getSystem().configuration.locale.language
             db.setDao().insertAll(
-                Set("1", "RED", "en")
+                Set("1", "RED", "def")
             )
         }
         var t = db.setDao().findByName()
+        if (t.lang == "def") {
+            //t.lang = Resources.getSystem().configuration.locale.language;
+        }
         db.close()
-        return t
+        var yy = t.lang
+        var yyy = t.color
+        var yyyy = t.uid
+        if (yy == "def") {
+            yy = Resources.getSystem().configuration.locale.language
+            if (yy == "fr") {
+                yy = "fr"
+            } else {
+                yy = "en"
+            }
+        }
+        if (yy != null && yyy != null && yyyy != null) {
+            return settes(yy, yyy, yyyy)
+        } else {
+            return null
+        }
+
     }
 
     fun C(app: Context, color: String): Int {

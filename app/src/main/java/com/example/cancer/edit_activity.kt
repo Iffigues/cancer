@@ -19,13 +19,17 @@ class edit_activity : AppCompatActivity() {
         val actionBar = supportActionBar
         var t = Call()
         var tt = t.B(applicationContext)
-        tt.lang?.let { changemm(it) }
+        if (tt != null) {
+            tt.lang.let { changemm(it) }
+        }
         if (actionBar != null) {
             var yy = t.B(applicationContext)
-            if (yy.color == "RED") {
-                actionBar.setBackgroundDrawable(ColorDrawable(Color.RED))
-            } else {
-                actionBar.setBackgroundDrawable(ColorDrawable(Color.BLUE))
+            if (yy != null) {
+                if (yy.color == "RED") {
+                    actionBar.setBackgroundDrawable(ColorDrawable(Color.RED))
+                } else {
+                    actionBar.setBackgroundDrawable(ColorDrawable(Color.BLUE))
+                }
             }
         }
 
