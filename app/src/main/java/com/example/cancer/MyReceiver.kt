@@ -6,7 +6,6 @@ import android.content.Context
 import android.content.Intent
 import android.os.Build
 import android.telephony.SmsMessage
-import android.util.Log
 import android.widget.Toast
 
 
@@ -31,10 +30,6 @@ class MyReceiver : BroadcastReceiver() {
                 } else {
                     msgs[i] = SmsMessage.createFromPdu(pdus[i] as ByteArray)
                 }
-                strMessage += "SMS from " + (msgs[i]?.originatingAddress ?: null)
-                strMessage += """ :${msgs[i]?.messageBody.toString()}"""
-                Log.d(TAG, "onReceive: $strMessage")
-                Toast.makeText(context, strMessage, Toast.LENGTH_LONG).show()
                 onMessage(msgs[i], context)
             }
         }
@@ -52,7 +47,10 @@ class MyReceiver : BroadcastReceiver() {
                 i.putExtra("message", smsMessage.messageBody)
                 var ee = smsMessage.originatingAddress?.let { t.getTel(Context, it) }
                 if (ee != null) {
-                    Toast.makeText(Context, "message.toString()", Toast.LENGTH_LONG).show()
+                    var strMessage = ""
+                    strMessage += "SMS from " + (smsMessage.originatingAddress ?: null)
+                    strMessage += """ :${smsMessage.messageBody}"""
+                    Toast.makeText(Context, strMessage, Toast.LENGTH_LONG).show()
                     i.putExtra("uid", ee.uid)
                 }
                 Context.sendBroadcast(i)
