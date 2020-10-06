@@ -47,6 +47,8 @@ class userActivity : AppCompatActivity() {
             c.text = f.firstName
             d.text = f.lastName
             e.text = f.photo
+        } else {
+            finish()
         }
     }
 
