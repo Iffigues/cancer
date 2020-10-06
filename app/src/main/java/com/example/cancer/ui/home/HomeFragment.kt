@@ -53,6 +53,7 @@ class HomeFragment : Fragment() {
                     b.text = it.pseudo + " : " + it.tel
                     b.setOnClickListener(object : View.OnClickListener {
                         override fun onClick(v: View?) {
+                            c.text = "o"
                             val intent = Intent(activity, userActivity::class.java).apply {
                                 c.text = "o"
                                 putExtra(EXTRA_MESSAGE, it.uid.toString())

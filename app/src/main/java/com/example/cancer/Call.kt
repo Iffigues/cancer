@@ -96,6 +96,18 @@ class Call {
         return uu
     }
 
+
+    fun eraseUser(app: Context, id: Int): Int {
+        val db = Room.databaseBuilder(
+            app,
+            AppDatabase::class.java, "Users.db"
+        ).allowMainThreadQueries().fallbackToDestructiveMigration().build()
+        var t = db.userDao()
+        var u = t.deleteUser(id)
+        db.close()
+        return u
+    }
+
     fun verif(phone: String, fn: String, ln: String, ps: String, em: String): Boolean {
         if (phone.isBlank() || phone.isEmpty()) {
             return false

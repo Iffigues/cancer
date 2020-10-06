@@ -34,6 +34,9 @@ interface UserDao {
     @Query("UPDATE `user` SET photo = :tel WHERE uid = :id")
     fun changeEm(tel: String, id: Int): Int
 
+    @Query("DELETE FROM  `user` WHERE uid = :id")
+    fun deleteUser(id: Int): Int
+
     @Insert
     fun insertAll(vararg users: User)
 

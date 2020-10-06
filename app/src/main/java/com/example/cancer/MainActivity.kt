@@ -166,6 +166,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     internal var o = ""
+
     override fun onResume() {
         super.onResume()
         if (o.isNotBlank() && o.isNotEmpty() && c.text == "n") {

@@ -27,6 +27,7 @@ class userActivity : AppCompatActivity() {
                 edit.text = "editer"
                 parle.text = "parle"
                 back.text = "retour"
+                erase.text = "supprimer"
             }
         }
         if (actionBar != null) {
@@ -41,7 +42,21 @@ class userActivity : AppCompatActivity() {
         }
         var f = t.getOnUse(applicationContext, message)
         if (f != null) {
+            a.text = f.pseudo
+            b.text = f.tel
+            c.text = f.firstName
+            d.text = f.lastName
+            e.text = f.photo
         }
+    }
+
+    fun eraseUser(view: View) {
+        val message: String? = intent.getStringExtra(EXTRA_MESSAGE)
+        var t = Call()
+        if (message != null) {
+            t.eraseUser(applicationContext, message.toInt())
+        }
+        finish()
     }
 
     fun sendMessage(view: View) {
