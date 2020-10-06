@@ -58,6 +58,7 @@ class HomeFragment : Fragment() {
                                 c.text = "o"
                                 putExtra(EXTRA_MESSAGE, it.uid.toString())
                             }
+                            c.text = "o"
                             startActivity(intent)
 
                         }
