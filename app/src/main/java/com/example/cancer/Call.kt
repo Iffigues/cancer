@@ -87,7 +87,7 @@ class Call {
             //"phone" -> t.changeTel(b, id)
             "phone" -> mok(t, b, id)
             "fn" -> t.changeFn(b, id)
-            "ln" -> t.changeFn(b, id)
+            "ln" -> t.changeLn(b, id)
             "ps" -> t.changePs(b, id)
             "em" -> t.changeEm(b, id)
             else -> 0

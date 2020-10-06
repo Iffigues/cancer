@@ -37,6 +37,7 @@ class edit_activity : AppCompatActivity() {
             val message: String? = intent.getStringExtra(MediaControlIntent.EXTRA_MESSAGE)
             override fun onClick(v: View?) {
                 var t = phone.text.toString()
+
                 if (t.isNotEmpty() && t.isNotBlank()) {
                     var i = Call()
                     if (message != null) {
@@ -48,10 +49,12 @@ class edit_activity : AppCompatActivity() {
         button2.setOnClickListener(object : View.OnClickListener {
             val message: String? = intent.getStringExtra(MediaControlIntent.EXTRA_MESSAGE)
             override fun onClick(v: View?) {
-                var t = phone.text.toString()
+                var t = fn.text.toString()
                 if (t.isNotEmpty() && t.isNotBlank()) {
                     var i = Call()
                     if (message != null) {
+
+
                         i.editU(applicationContext, "fn", t, message.toInt())
                     }
                 }
@@ -60,7 +63,7 @@ class edit_activity : AppCompatActivity() {
         button3.setOnClickListener(object : View.OnClickListener {
             val message: String? = intent.getStringExtra(MediaControlIntent.EXTRA_MESSAGE)
             override fun onClick(v: View?) {
-                var t = phone.text.toString()
+                var t = ln.text.toString()
                 if (t.isNotEmpty() && t.isNotBlank()) {
                     var i = Call()
                     if (message != null) {
@@ -85,7 +88,7 @@ class edit_activity : AppCompatActivity() {
         button7.setOnClickListener(object : View.OnClickListener {
             val message: String? = intent.getStringExtra(MediaControlIntent.EXTRA_MESSAGE)
             override fun onClick(v: View?) {
-                var t = phone.text.toString()
+                var t = em.text.toString()
                 if (t.isNotEmpty() && t.isNotBlank()) {
                     var i = Call()
                     if (message != null) {

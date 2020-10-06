@@ -101,7 +101,7 @@
                 android:text="email" />
 
             <EditText
-                android:id="@+id/editTextTextEmailAddress"
+                android:id="@+id/em"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:editable="true"
