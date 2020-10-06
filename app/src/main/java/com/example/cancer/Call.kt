@@ -69,9 +69,10 @@ class Call {
         return t
     }
 
-    fun mok(t: UserDao, b: String, id: Int): Int {
+    fun mok(t: UserDao, b: String, id: Int, app: Context): Int {
         var tt = t.findByName(b)
-        if (b.isEmpty()) {
+        //Toast.makeText(app, tt.toString(), Toast.LENGTH_LONG).show()
+        if (tt == null && b.isNotEmpty()) {
             return t.changeTel(b, id)
         }
         return 1
@@ -85,7 +86,7 @@ class Call {
         var t = db.userDao()
         var uu = when (color) {
             //"phone" -> t.changeTel(b, id)
-            "phone" -> mok(t, b, id)
+            "phone" -> mok(t, b, id, app)
             "fn" -> t.changeFn(b, id)
             "ln" -> t.changeLn(b, id)
             "ps" -> t.changePs(b, id)

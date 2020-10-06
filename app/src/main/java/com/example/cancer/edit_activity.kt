@@ -37,7 +37,6 @@ class edit_activity : AppCompatActivity() {
             val message: String? = intent.getStringExtra(MediaControlIntent.EXTRA_MESSAGE)
             override fun onClick(v: View?) {
                 var t = phone.text.toString()
-
                 if (t.isNotEmpty() && t.isNotBlank()) {
                     var i = Call()
                     if (message != null) {
