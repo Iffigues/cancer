@@ -142,6 +142,7 @@ class meta : AppCompatActivity() {
     internal var o = ""
     override fun onResume() {
         super.onResume()
+        registerReceiver(intentReceiver, intentFilter)
         if (o.isNotBlank() && o.isNotEmpty()) {
             Toast.makeText(applicationContext, o, Toast.LENGTH_LONG).show()
         }
@@ -152,6 +153,7 @@ class meta : AppCompatActivity() {
         super.onPause()
         SimpleDateFormat("yyyy.MM.dd '-' HH:mm:ss")
         o = Date().toString()
+        unregisterReceiver(intentReceiver)
 
     }
 }
