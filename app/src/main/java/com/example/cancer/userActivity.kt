@@ -15,8 +15,12 @@ import android.content.Intent as Intent1
 
 class userActivity : AppCompatActivity() {
 
+    internal var yes = "0"
     override fun onCreate(savedInstanceState: Bundle?) {
         val message: String? = intent.getStringExtra(EXTRA_MESSAGE)
+        if (message != null) {
+            yes = message.toString()
+        }
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_user)
         val actionBar = supportActionBar
@@ -89,6 +93,18 @@ class userActivity : AppCompatActivity() {
     internal var pp = 0
     override fun onResume() {
         super.onResume()
+        var t = Call()
+        var f = t.getOnUse(applicationContext, yes)
+        if (f != null) {
+            a.text = f.pseudo
+            b.text = f.tel
+            c.text = f.firstName
+            d.text = f.lastName
+            e.text = f.photo
+        } else {
+            finish()
+        }
+
         if (o.isNotBlank() && o.isNotEmpty() && pp == 0) {
             Toast.makeText(applicationContext, o, Toast.LENGTH_LONG).show()
         } else {

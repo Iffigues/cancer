@@ -13,6 +13,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 class edit_activity : AppCompatActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_edit_activity)
@@ -22,6 +23,7 @@ class edit_activity : AppCompatActivity() {
         if (tt != null) {
             tt.lang.let { changemm(it) }
         }
+
         if (actionBar != null) {
             var yy = t.B(applicationContext)
             if (yy != null) {
@@ -35,6 +37,7 @@ class edit_activity : AppCompatActivity() {
 
         button.setOnClickListener(object : View.OnClickListener {
             val message: String? = intent.getStringExtra(MediaControlIntent.EXTRA_MESSAGE)
+
             override fun onClick(v: View?) {
                 var t = phone.text.toString()
                 if (t.isNotEmpty() && t.isNotBlank()) {
@@ -114,6 +117,7 @@ class edit_activity : AppCompatActivity() {
     internal var o = ""
     override fun onResume() {
         super.onResume()
+
         if (o.isNotBlank() && o.isNotEmpty()) {
             Toast.makeText(applicationContext, o, Toast.LENGTH_LONG).show()
         }

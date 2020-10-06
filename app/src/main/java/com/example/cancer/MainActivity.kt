@@ -3,6 +3,7 @@ package com.example.cancer
 
 import android.Manifest
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.content.res.Resources
 import android.graphics.Color
@@ -10,11 +11,13 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.app.ActivityCompat
 import androidx.drawerlayout.widget.DrawerLayout
+import androidx.mediarouter.media.MediaControlIntent
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
@@ -169,6 +172,33 @@ class MainActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
+
+        ou.removeAllViews()
+        var t = Call()
+        var a = application
+        if (a != null) {
+            var f = t.getUse(a)
+            f.forEach {
+                var b = Button(a)
+                b.text = it.pseudo + " : " + it.tel
+                b.setOnClickListener(object : View.OnClickListener {
+                    override fun onClick(v: View?) {
+                        c.text = "o"
+                        val intent = Intent(a, userActivity::class.java).apply {
+                            c.text = "o"
+                            putExtra(MediaControlIntent.EXTRA_MESSAGE, it.uid.toString())
+                        }
+                        c.text = "o"
+                        startActivity(intent)
+
+                    }
+
+                })
+                ou.addView(b)
+            }
+        }
+
+
         if (o.isNotBlank() && o.isNotEmpty() && c.text == "n") {
             Toast.makeText(applicationContext, o, Toast.LENGTH_LONG).show()
         } else {
